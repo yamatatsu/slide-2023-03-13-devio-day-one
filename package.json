@@ -1,0 +1,18 @@
+{
+  "name": "slide-2023-03-13-devio-day-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "marp -s ./slides --html",
+    "gen": "pnpm gen:demo_app && pnpm gen:single_server",
+    "gen:demo_app": "docker run --rm -it -v $(pwd)/diagrams:/workdir craighurley/diagrams:1.0.2 diagrams demo_app.py",
+    "gen:single_server": "docker run --rm -it -v $(pwd)/diagrams:/workdir craighurley/diagrams:1.0.2 diagrams single_server.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@marp-team/marp-cli": "^2.4.0"
+  }
+}
