@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pnpm build -s",
+    "start": "npm run build -- -s",
     "build": "marp ./slides --html",
-    "gen": "pnpm gen:demo_app && pnpm gen:single_server",
+    "gen": "npm run gen:demo_app && npm run gen:single_server",
     "gen:demo_app": "docker run --rm -it -v $(pwd)/diagrams:/workdir craighurley/diagrams:1.0.2 diagrams demo_app.py",
     "gen:single_server": "docker run --rm -it -v $(pwd)/diagrams:/workdir craighurley/diagrams:1.0.2 diagrams single_server.py"
   },
