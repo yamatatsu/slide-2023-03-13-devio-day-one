@@ -1,0 +1,4 @@
+- slide page
+  - https://yamatatsu.github.io/slide-2023-03-13-devio-day-one
+- speak on
+  - https://classmethod.connpass.com/event/276869/
