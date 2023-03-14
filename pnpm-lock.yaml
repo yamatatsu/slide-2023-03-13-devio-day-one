@@ -1,11 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@kazumatu981/markdown-it-kroki': ^1.1.1
   '@marp-team/marp-cli': ^2.4.0
 
 dependencies:
-  '@kazumatu981/markdown-it-kroki': 1.1.1
   '@marp-team/marp-cli': 2.4.0
 
 packages:
@@ -29,10 +27,6 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       chalk: 2.4.2
       js-tokens: 4.0.0
-    dev: false
-
-  /@kazumatu981/markdown-it-kroki/1.1.1:
-    resolution: {integrity: sha512-LDYl+mV2WogLQ5r4olxovm+gphL/MNGfWZ1M1woBO/YhFnfwdn5EAUu9zF/KoVZzytJPq0RNfyeDtMkv+GJihg==}
     dev: false
 
   /@marp-team/marp-cli/2.4.0:
