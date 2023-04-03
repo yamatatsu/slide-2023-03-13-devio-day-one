@@ -3,6 +3,7 @@ marp: true
 title: サーバーレスで作る共同編集サービス
 description: 共同編集データをDynamoDBに保存するOSSを実装、公開した知見をもとに、共同編集データ永続化の設計観点を、分散システム、冪等性、結果整合性、富豪的解決法などをキーワードに説明します
 author: yamatatsu
+image: https://yamatatsu.github.io/slide-2023-03-13-devio-day-one/ogp.png
 theme: default
 transition: slide 300ms
 style: |
