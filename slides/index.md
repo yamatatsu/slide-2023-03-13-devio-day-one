@@ -86,12 +86,19 @@ style: |
 ---
 
 <!-- _class: center -->
-:innocent: わからん。。。
+:triumph: 「それはそうですよ！  
+websocketで状態共有して競合解決して  
+undo/redoと無限平面とあとあと」
 
 ---
 
 <!-- _class: center -->
-:thinking:でもむずかしそう。。。
+:innocent: （でも本当はよくわからん。。。）
+
+---
+
+<!-- _class: center -->
+:thinking:（なんかむずかしそう。。。）
 
 ---
 
@@ -153,8 +160,9 @@ YJSとは共同編集におけるデータコンフリクトを解決するた�
 YJSとは
 
 - 共同編集のライブラリ
+- Client同士が update（更新）を送り合うことで結果的に各Clientが同じ状態になる
 - 結果整合的で分散システムに向いてる
-- Node同士が update（更新）を送り合うことで結果的に各Nodeが同じ状態になる
+  - 冪等で可換
 - JavaScriptで実装されている（ブラウザでも動く）
 - undo/redoをサポート
 
