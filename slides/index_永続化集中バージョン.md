@@ -12,18 +12,6 @@ style: |
   section.center p {
     text-align: center;
   }
-  h1 {
-    font-size: 48px;
-  }
-  h2 {
-    font-size: 64px;
-  }
-  h3 {
-    font-size: 48px;
-  }
-  p, li {
-    font-size: 48px;
-  }
 ---
 
 <!--
@@ -73,13 +61,13 @@ style: |
 
 ---
 
-### もくじ
+もくじ
 
 1. イントロ
 1. デモ
 1. 構成および技術紹介
-1. サーバーレス化の課題と解決
-1. yjsの結果整合性を永続化
+1. 永続化の課題と解決策
+1. 残る課題
 
 ---
 
@@ -147,114 +135,40 @@ undo/redoと無限平面とあとあと」
 
 <!-- transition: fade 0ms -->
 
-<div style="height: 700px; font-size: 40px">
 YJSとは共同編集におけるデータコンフリクトを解決するためのライブラリです。
-</div>
 
 ---
 
-<div style="height: 700px; font-size: 40px">
 YJSとは共同編集におけるデータコンフリクトを解決するためのライブラリです。CRDT(Conflict-free Replicated Data Type)というデータ構造を用いて、データの整合性を保証します。
-</div>
 
 ---
 
-<div style="font-size: 40px">
 YJSとは共同編集におけるデータコンフリクトを解決するためのライブラリです。CRDT(Conflict-free Replicated Data Type)というデータ構造を用いて、データの整合性を保証します。CRDTはGoogle Docsなどで使われているOT(Operational Transformation)という手法と比較されることが多いです。OTは編集操作を順番に適用していくことで、データの整合性を保証します。そのため順序を保証する中央サーバーが必要になります。一方CRDTは編集操作を順番に適用することなく、結果整合的にデータの整合性を保証します。そのため順序を保証する中央サーバーが不要で、分散システムに適した手法です。
-</div>
 
 ---
 
-<div style="font-size: 30px">
 YJSとは共同編集におけるデータコンフリクトを解決するためのライブラリです。CRDT(Conflict-free Replicated Data Type)というデータ構造を用いて、データの整合性を保証します。CRDTはGoogle Docsなどで使われているOT(Operational Transformation)という手法と比較されることが多いです。OTは編集操作を順番に適用していくことで、データの整合性を保証します。そのため順序を保証する中央サーバーが必要になります。一方CRDTは編集操作を順番に適用することなく、結果整合的にデータの整合性を保証します。そのため順序を保証する中央サーバーが不要で、分散システムに適した手法です。またOTに比べて複雑なデータ構造を管理することに向いていると言われています。YJSはJavaScriptで実装されたCRDTライブラリで、ブラウザ上で動作する共同編集サービスを構築するためのライブラリです。各ユーザーの編集操作をYJSのデータ構造に適用することで、update（更新）と呼ばれるバイナリデータが発行されます。このバイナリデータを各ユーザーが受け取ることで、たとえ同時に編集されたとしても、データの整合性を保証することができます。updateの適用は可換であり冪等なので通信上で輻輳があってもデータが破損することはありません。
-</div>
 
 ---
 
 <!-- transition: slide 300ms -->
 
-<div style="font-size: 26px">
 YJSとは共同編集におけるデータコンフリクトを解決するためのライブラリです。CRDT(Conflict-free Replicated Data Type)というデータ構造を用いて、データの整合性を保証します。CRDTはGoogle Docsなどで使われているOT(Operational Transformation)という手法と比較されることが多いです。OTは編集操作を順番に適用していくことで、データの整合性を保証します。そのため順序を保証する中央サーバーが必要になります。一方CRDTは編集操作を順番に適用することなく、結果整合的にデータの整合性を保証します。そのため順序を保証する中央サーバーが不要で、分散システムに適した手法です。またOTに比べて複雑なデータ構造を管理することに向いていると言われています。YJSはJavaScriptで実装されたCRDTライブラリで、ブラウザ上で動作する共同編集サービスを構築するためのライブラリです。各ユーザーの編集操作をYJSのデータ構造に適用することで、update（更新）と呼ばれるバイナリデータが発行されます。このバイナリデータを各ユーザーが受け取ることで、たとえ同時に編集されたとしても、データの整合性を保証することができます。updateの適用は可換であり冪等なので通信上で輻輳があってもデータが破損することはありません。共同編集で必須なundo/redo機能もサポートされており、加えてWebRTC, WebSocketなどのプロトコル、IndexedDB, LevelDBなどのストレージ、React, Vueなどのフレームワーク、monaco, CodeMirrorなどのエディターなど、さまざまな技術との組み合わせに対応しています。
-</div>
 
 ---
 
 YJSとは
 
 - 共同編集のライブラリ
-- update（更新）を送り合うことで同期する
+- Client同士が update（更新）を送り合うことで結果的に各Clientが同じ状態になる
 - 結果整合的で分散システムに向いてる
   - 冪等で可換
-- JavaScriptで実装されている
+- JavaScriptで実装されている（ブラウザでも動く）
 - undo/redoをサポート
 
 ---
 
-## サーバーレス化の課題と解決
-
----
-
-### 課題.1
-既存のy-websocket serverは  
-コネクションを状態として保持する
-
----
-
-![](./single_server.png)
-
----
-
-![](./demo_app-yjs.png)
-
----
-
-### 課題.2
-既存のy-websocket serverは  
-コネクションごとのY.Docを状態として保持する
-
----
-
-![](./single_server.png)
-
----
-
-![](./demo_app-yjs.png)
-
----
-
-### 課題.3
-Amazon API Gateway WebSocket API は
-path parameterをサポートしていない
-
----
-
-### 課題.4
-既存のy-websocket clientは  
-subprotocolをサポートしていない
-
----
-
-### 課題.5
-既存のy-dynamodbは  
-sdk v2しかサポートしてないし、遅いし、整合性の課題があるし、メンテが止まっている
-
----
-
-### [y-dynamodb-for-sdkv3](https://github.com/yamatatsu/yjs-lab/tree/main/packages/y-dynamodb-for-sdkv3)
-
-- sdk v3対応
-- 書き込み速度が100倍向上
-- flush操作の整合性が向上
-
----
-
-### 課題を解決したコードがこちら
-
-https://github.com/yamatatsu/yjs-lab/
-
----
-
-## yjsの結果整合性を永続化
+## 永続化の課題と解決策
 
 ---
 
@@ -271,9 +185,13 @@ https://github.com/yamatatsu/yjs-lab/
 
 ---
 
-- 整合性の解決をDBではなくComputeが担っている
-- DynamoDBは悲観ロックやロック待ち書き込みをサポートしていない
-- 楽観ロックはできる。なので成功するまで何度も読み出して書き込むことはできる。
+### 何がいけなかったのか？
+
+- a. 整合性の解決をDBではなくComputeが担っている
+- b. DynamoDBは悲観ロックやロック待ち書き込みをサポートしていない
+- c. 楽観ロックはできる。なので成功するまで何度も読み出して書き込むことはできる。
+
+そもそもbとcは書き込み偏重のワークロードには向いていない。美しくない。ロマンがない。（個人の主観です）
 
 ---
 
@@ -320,9 +238,11 @@ flushという操作があります:bulb:
 
 ### flush
 
-- データ読み出し時に行う
-- すべてのupdateを取り出し、Y.Docに書き込む
-- 完成したY.Docのスナップショットを**他の更新と同じように保存する**
+- データ読み出し時に指定件数以上のデータがある場合、flushを行う
+- すべてのupdateを取り込んだし、YJSに書き込む
+- 完成したYJSのスナップショットを**他の更新と同じように保存する**
+  - つまり一時的に同じupdateが複数取り出せる状態になる  
+    => YJSは冪等だから問題ない
 - 最後にflushされたupdateたちを削除する
 
 ---
@@ -331,11 +251,25 @@ flushという操作があります:bulb:
 
 ---
 
-YJSで楽して共同編集機能を作りましょう！
+これらの手法は僕が発明したわけでもなんでもありません。
+
+- [y-leveldb](https://github.com/yjs/y-leveldb)
+- [y-dynamodb](https://github.com/hesselbom/y-dynamodb)
 
 ---
 
-rust実装の[Yrs](https://docs.rs/yrs/latest/yrs/)もあるよ！
+### [y-dynamodb-for-sdkv3](https://github.com/yamatatsu/yjs-lab/tree/main/packages/y-dynamodb-for-sdkv3)
+
+- sdk v3対応
+- 書き込み速度が100倍向上
+- flush操作の整合性が向上
+
+---
+
+## 残る課題
+
+- 400kb問題
+- flushの整合性の問題
 
 ---
 
