@@ -47,25 +47,25 @@ style: |
     width="180"
   />
   <ul style="list-style-type: none; line-height: 1.4">
-    <li style="font-size: 36px; font-weight: 700;">山本達也（やまたつ）</li>
-    <li style="font-size: 20px; margin-bottom: 0px;">クラスメソッド株式会社</li>
-    <li style="font-size: 20px; margin-bottom: 16px;">CX事業本部 デリバリー部</li>
-    <li style="font-size: 20px; margin-bottom: 0px;">
+    <li style="font-size: 56px; font-weight: 700;">山本達也（やまたつ）</li>
+    <li style="font-size: 32px; margin-bottom: 0px;">クラスメソッド株式会社</li>
+    <li style="font-size: 32px; margin-bottom: 16px;">CX事業本部 デリバリー部</li>
+    <li style="font-size: 24px; margin-bottom: 0px;">
       <a href="https://twitter.com/yamatatsu193">Twitter: @yamatatsu193</a>
     </li>
-    <li style="font-size: 20px; margin-bottom: 16px;">
+    <li style="font-size: 24px; margin-bottom: 16px;">
       <a href="https://github.com/yamatatsu">GitHub: @yamatatsu</a>
     </li>
-    <li style="font-size: 20px; margin-bottom: 8px;">
+    <li style="font-size: 32px; margin-bottom: 8px;">
       コミュニティ活動:
       <ul style="list-style-type: disc">
-        <li>JAWS-UG CDK支部</li>
+        <li style="font-size: 24px;">JAWS-UG CDK支部</li>
       </ul>
     </li>
-    <li style="font-size: 20px; margin-bottom: 8px;">
+    <li style="font-size: 32px; margin-bottom: 8px;">
       OSSコントリビューション:
       <ul style="list-style-type: disc">
-        <li>aws-cdk</li>
+        <li style="font-size: 24px;">aws-cdk</li>
       </ul>
     </li>
   </ul>
@@ -79,7 +79,7 @@ style: |
 1. デモ
 1. 構成および技術紹介
 1. サーバーレス化の課題と解決
-1. yjsの結果整合性を永続化
+1. yjsの永続化
 
 ---
 
@@ -196,7 +196,7 @@ YJSとは
 
 ### 課題.1
 既存のy-websocket serverは  
-コネクションを状態として保持する
+サーバーの状態に依存している
 
 ---
 
@@ -209,32 +209,18 @@ YJSとは
 ---
 
 ### 課題.2
-既存のy-websocket serverは  
-コネクションごとのY.Docを状態として保持する
-
----
-
-![](./single_server.png)
-
----
-
-![](./demo_app-yjs.png)
-
----
-
-### 課題.3
 Amazon API Gateway WebSocket API は
 path parameterをサポートしていない
 
 ---
 
-### 課題.4
+### 課題.3
 既存のy-websocket clientは  
 subprotocolをサポートしていない
 
 ---
 
-### 課題.5
+### 課題.4
 既存のy-dynamodbは  
 sdk v2しかサポートしてないし、遅いし、整合性の課題があるし、メンテが止まっている
 
@@ -254,7 +240,7 @@ https://github.com/yamatatsu/yjs-lab/
 
 ---
 
-## yjsの結果整合性を永続化
+## yjsの永続化
 
 ---
 
