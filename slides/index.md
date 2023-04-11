@@ -226,17 +226,17 @@ sdk v2しかサポートしてないし、遅いし、整合性の課題があ�
 
 ---
 
+### 課題を解決したコードがこちら
+
+https://github.com/yamatatsu/yjs-lab/
+
+---
+
 ### [y-dynamodb-for-sdkv3](https://github.com/yamatatsu/yjs-lab/tree/main/packages/y-dynamodb-for-sdkv3)
 
 - sdk v3対応
 - 書き込み速度が100倍向上
 - flush操作の整合性が向上
-
----
-
-### 課題を解決したコードがこちら
-
-https://github.com/yamatatsu/yjs-lab/
 
 ---
 
